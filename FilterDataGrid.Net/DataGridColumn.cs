@@ -24,7 +24,7 @@ using System.Windows.Input;
 
 namespace FilterDataGrid
 {
-    public sealed class DataGridCheckBoxColumn : System.Windows.Controls.DataGridCheckBoxColumn
+    public sealed class DataGridCheckBoxColumn : System.Windows.Controls.DataGridCheckBoxColumn, IDataGridColumn
     {
         #region Public Fields
 
@@ -61,7 +61,7 @@ namespace FilterDataGrid
         #endregion Public Properties
     }
 
-    public sealed class DataGridComboBoxColumn : System.Windows.Controls.DataGridComboBoxColumn
+    public sealed class DataGridComboBoxColumn : System.Windows.Controls.DataGridComboBoxColumn, IDataGridColumn
     {
 
         #region Public Classes
@@ -153,7 +153,7 @@ namespace FilterDataGrid
         #endregion Protected Methods
     }
 
-    public class DataGridNumericColumn : DataGridTextColumn
+    public class DataGridNumericColumn : DataGridTextColumn, IDataGridColumn
     {
         #region Private Fields
 
@@ -359,7 +359,7 @@ namespace FilterDataGrid
         #endregion Private Methods
     }
 
-    public sealed class DataGridTemplateColumn : System.Windows.Controls.DataGridTemplateColumn
+    public sealed class DataGridTemplateColumn : System.Windows.Controls.DataGridTemplateColumn, IDataGridColumn
     {
         #region Public Fields
 
@@ -396,7 +396,7 @@ namespace FilterDataGrid
         #endregion Public Properties
     }
 
-    public class DataGridTextColumn : System.Windows.Controls.DataGridTextColumn
+    public class DataGridTextColumn : System.Windows.Controls.DataGridTextColumn, IDataGridColumn
     {
         #region Public Fields
 
@@ -433,7 +433,7 @@ namespace FilterDataGrid
         #endregion Public Properties
     }
 
-    public sealed class DataGridBoundColumn : System.Windows.Controls.DataGridBoundColumn
+    public sealed class DataGridBoundColumn : System.Windows.Controls.DataGridBoundColumn, IDataGridColumn
     {
         #region Public Fields
 
