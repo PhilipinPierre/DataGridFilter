@@ -816,11 +816,7 @@ namespace FilterDataGrid
                     // Get columns that match the preset field name and are filterable
                     var columns = Columns
                         .Where(c =>
-                            (c is DataGridTextColumn dtx && dtx.IsColumnFiltered && dtx.FieldName == preset.FieldName)
-                            || (c is DataGridTemplateColumn dtp && dtp.IsColumnFiltered && dtp.FieldName == preset.FieldName)
-                            || (c is DataGridCheckBoxColumn dck && dck.IsColumnFiltered && dck.FieldName == preset.FieldName)
-                            || (c is DataGridNumericColumn dnm && dnm.IsColumnFiltered && dnm.FieldName == preset.FieldName)
-                            || (c is DataGridComboBoxColumn cmb && cmb.IsColumnFiltered && cmb.FieldName == preset.FieldName))
+                            (c is IDataGridColumn dtx && dtx.IsColumnFiltered && dtx.FieldName == preset.FieldName))
                         .ToList();
 
                     foreach (var col in columns)
@@ -1073,14 +1069,7 @@ namespace FilterDataGrid
             {
                 // get the columns that can be filtered
                 // ReSharper disable MergeIntoPattern
-                var columns = Columns
-                    .Where(c => ((c is DataGridBoundColumn dbu && dbu.IsColumnFiltered)
-                                  || (c is DataGridCheckBoxColumn dcb && dcb.IsColumnFiltered)
-                                  || (c is DataGridComboBoxColumn dbx && dbx.IsColumnFiltered)
-                                  || (c is DataGridNumericColumn dnm && dnm.IsColumnFiltered)
-                                  || (c is DataGridTemplateColumn dtp && dtp.IsColumnFiltered)
-                                  || (c is DataGridTextColumn dtx && dtx.IsColumnFiltered))
-                    )
+                var columns = Columns.Where(c => (c is IDataGridColumn dbu && dbu.IsColumnFiltered))
                     .Select(c => c)
                     .ToList();
 
@@ -1693,29 +1682,12 @@ namespace FilterDataGrid
 
                 // get field name from binding Path
                 // ReSharper disable once ConvertIfStatementToSwitchStatement
-                if (headerColumn is DataGridTextColumn textColumn)
+                if (headerColumn is IDataGridColumn dataGridColumn)
                 {
-                    fieldName = textColumn.FieldName;
-                }
-                if (headerColumn is DataGridBoundColumn templateBound)
-                {
-                    fieldName = templateBound.FieldName;
-                }
-                if (headerColumn is DataGridTemplateColumn templateColumn)
-                {
-                    fieldName = templateColumn.FieldName;
-                }
-                if (headerColumn is DataGridCheckBoxColumn checkBoxColumn)
-                {
-                    fieldName = checkBoxColumn.FieldName;
-                }
-                if (headerColumn is DataGridNumericColumn numericColumn)
-                {
-                    fieldName = numericColumn.FieldName;
+                    fieldName = dataGridColumn.FieldName;
                 }
                 if (headerColumn is DataGridComboBoxColumn comboBoxColumn)
                 {
-                    fieldName = comboBoxColumn.FieldName;
                     comboxColumn = comboBoxColumn;
                 }
 
